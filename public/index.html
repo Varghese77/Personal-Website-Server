@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Roy Varghese Mathew</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Bootstrap core JavaScript -->
+	<script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <link rel="stylesheet" href="css/theme_tweeks.css">
+    <style>
+        .classes_container {
+            padding: 0;
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+        .descr {
+            background-color: #67ad5a;
+            border: 1px solid white;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .descr p {
+            text-align: left;
+        }    
+    </style>
+    <script src="js/helper.js"></script>
+    <script>
+        var descrs = document.getElementsByClassName("descr");
+        
+        window.onload = reScale;
+
+        window.onresize = reScale;
+        
+        function reScale() {
+            for (i = 0; i < descrs.length; i++){
+                descrs[i].style.height = "100%";
+            }
+            if (document.body.offsetWidth > 691) {
+                equalizeHeight(descrs);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html" style="color:#ffffff">HOME</a></li>
+                    <li><a href="portfolio.html">PORTFOLIO</a></li>
+                    <li><a href="blog.html">BLOG (NEW)</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- First Container -->
+    <div class="container-fluid bg-1 text-center">
+        <img src="images/profile_pic.jpg" class="img-responsive img-thumbnail margin" width="350" height="350">
+        <h2 class="margin">Hello World!</h2>
+        <h3>I'm Roy Varghese Mathew</h3>
+    </div>
+
+    <!-- Second Container -->
+    <div class="container-fluid bg-2 text-center">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <h3 class="margin">About Me</h3>
+            <p>
+                I am a student who is currently studying computer science because I want to help develop the
+                technologies of the future. My experience in software development is broad; I have experience
+                ranging from developing android and web applications to projects that emphasize back-end development.
+                In addition to technology, I am also interested in finance as hobby and follow the financial markets
+                semi-regularly.
+            </p>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+
+    <!-- Third Container (Grid) -->
+    <div class="container-fluid bg-3 text-center">
+        <h3 class="margin">Skills</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Soft Skills</h4>
+                <ul>
+                    <li>Leadership</li>
+                    <li>Quick-Learner</li>
+                    <li>Hard-Working</li>
+                    <li>Flexible</li>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <h4>Technical Skills</h4>
+                <ul>
+                    <li>Expert with Java</li>
+                    <li>Basic experience with Android Development</li>
+                    <li>Knows Some HTML/CSS/JavaScript and C</li>
+                    <li>Prior experience with Python and MatLab</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fourth Container -->
+    <div class="container-fluid bg-2 text-center">
+        <h3 class="margin">Education</h3>
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>Seattle Preparatory School</h4>
+                <p>
+                    Awarded High School Diploma
+                    <br />
+                    2011-2015
+                    <br />
+                    Seattle, WA
+                </p>
+            </div>
+            <div class="col-xs-6">
+                <h4>University of Washington</h4>
+                <p>
+                    Computer Science Major
+                    <br />
+                    2015-2019
+                    <br />
+                    Seattle, WA
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fifth Container -->
+    <div class="container-fluid bg-1 text-center">
+        <h3 class="margin">Notable Coursework</h3>
+        <div class = "classes_container">
+            <div class="row">
+                <div class="col-sm-6 descr">
+                    <h4>AMATH 301: Beginning Scientific Computing</h4>
+                    <p>In this class I learned the basics of different ways to efficiently solve complex numerical
+                        problems such as solving using various integration schemes so predict chaotic systems, how
+                        to use the fourier transform to remove noise from an audio signal, and even using eigen vectors/values
+                        to build a facial recognition algorithm.
+                    </p>
+                </div>
+                <div class="col-sm-6 descr">
+                    <h4>CSE 143X: Accelerated Computer Programming I/II</h4>
+                    <p>This introductory programming class thought me basic concepts such as file processing,
+                        defining objects, and the basic ideas of of data abstraction and encapsulation. This includes
+                        learning about stacks, queues, maps, sets, linked lists, binary trees, recursion, runtime
+                        complexity and use of predefined collection classes.”
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 descr">
+                    <h4>CSE 351: Hardware/Software Interface</h4>
+                    <p>I am currently taking this class. Topics already covered include how to use the linux command line,
+                    the basics of C, how various data types are represented in binary and how to manipulate them with
+                    bitwise operations.</p>
+                </div>
+                <div class="col-sm-6 descr">
+                    <h4>CSE331: Software Design and Implementation</h4>
+                    <p>"Explores concepts and techniques for design and construction of reliable and maintainable
+                        software systems in modern high-level languages: specifications; program structure and
+                        design; program-correctness approaches, including testing; and event-driven programming
+                        (e.g., graphical user interface)."
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 descr">
+                    <h4>CSE 311: Foundations Of Computing I</h4>
+                    <p>This class thought me the fundamentals of logic, set theory, induction, and algebraic structures with
+                        applications to computing; finite state machines; and limits of computability.
+                    </p>
+                </div>
+                <div class="col-sm-6 descr">
+                    <h4>CSE 332: Data Structures and Parallelism</h4>
+                    <p>I am currently taking this class and so far I have learned about how to calculate the
+                        runtime of an algorithm and how to implement data structures including heaps and AVL trees.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="container-fluid text-center bg-4">
+        <h4>Contact Me</h4>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <a href="https://www.facebook.com/Varghese777"><img class="icon" src="images/fb.png" /></a>
+                <a href="https://www.linkedin.com/in/royvarghesemathew"><img class="icon" src="images/linkdin.png" /></a>
+                <a href="https://github.com/Varghese77"><img class="icon" src="images/git.png" /></a>
+                <a href="mailto:RoyM77@gmail.com"><img class="icon" src="images/email.png" /></a>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

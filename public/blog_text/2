@@ -1,0 +1,97 @@
+				<h1>A Basic Guide to How 3D Graphics are Rendered</h1>
+				<p>
+				One of the greatest developments of computer generated imagery came via the discovery that 3D environments could be 
+				computationally rendered unto a 2D screen. This concept has revolutionized the entertainment industry leading to the 
+				creation of classic animated films such as Pixar’s Toy Story to block buster videogames. The first videogame that I ever
+				played was The Legend of Zelda: Ocarina of Time and it is probably the single largest motivation for me deciding to major
+				in computer science. I was initially amazed at how the game could create such a complex and beautiful 3D world. As I got older,
+				I became more curious about how computers which process 1s and 0s could manipulate information to create this 3D world. Below 
+				is a very basic overview of how this occurs.
+				</p>
+				<h3>3D Cartesian Graphs</h3>
+				<figure>
+					<img src="images/1-1.jpg" style="width: 60%"/>
+					<figcaption>Fig.1 - A low polygon model (a) vs a high polygon model (b).</figcaption>
+				</figure>
+				<p>
+				All 3D models are represented through a series of points represented in a 3D Cartesian space. These points are then 
+				linked together to form triangles (or polygons) which make up the faces of the 3D model. Polygons can be added together
+				to mathematically represent almost any object in 3D space and the more polygons a model has, the more detailed it will
+				appear when it is finally rendered (at the cost of a longer render time). Most AAA games process thousands of polygons
+				all at once; the creators of Final Fantasy XV estimate that each character will have about 100,000 polygons each.
+				</p>
+				<p>
+				3D points are rendered with respect to the origin and this presents a problem with mapping models in 3D space. When 
+				multiple models need to be rendered, each one’s points will be rendered with respect to the origin and they will often
+				overlap. To manipulate the location and orientation of where an object is rendered, the points that make up the model
+				need to undergo transformations, specifically translations and rotations.
+				</p>
+				<p>
+				Translations involve shifting a model’s points from one location to another while still retaining their relative distance
+				and orientation. This can be done simply taking the x, y, and z values of each point needing to be translated and adding
+				(or subtracting) the distance the point will travel to its new location. For example, if a point A at (1, 2, 3) needs to
+				translate to point B at (4, 5, 6), then a value of 3 will need to be added to all three directions. Another way to translate
+				points is to use the translation matrix operation. The MATLAB code to translate a 3D point using the first method would be…
+				</p>
+							<pre>
+							% Translation can occur using simple addition...
+							A = [1 2 3];
+							DP = [3 3 3];
+							B = A + DP;
+
+							% or using a Translation Matrix Option
+							A = [1; 2; 3; 1];
+							translation_matrix = [
+								1 0 0 3;
+								0 1 0 3;
+								0 0 1 3;
+								0 0 0 1;
+								];
+							B = translation_matrix * A;
+							</pre>
+				<p>
+				Without going into too much detail, rotations involve shifting a model’s orientation around a certain axis. This can be done
+				by multiplying the points of the model by a rotation matrix specific to the axis that is needs to be rotated around. For instance,
+				if I wanted to rotate a 3D model around the z axis, then I would use the following MATLAB code…
+				</p>
+				<pre>
+					% Rotation occurs by performing a rotation 
+					% matrix operation. <model_points> should be 
+					% a matrix of a all the points in a model but 
+					% is just a bunch of random points in this 
+					% case for demonstration purposes.
+					model_points = rand(3, 100);
+					angle = pi/2;
+					Rz = [
+						cos(angle) -sin(angle) 0; 
+						sin(angle) cos(angle) 0;
+						0 0 1;
+						];
+					rotated_model = Rz * model_points;
+				</pre>
+				<h3>Rendering the Data</h3>
+				<figure>
+					<img src="images/1-2.GIF" style="width: 40%"/>
+					<figcaption>Fig.2 - 3D models are bing rasterized unto a 2D image.</figcaption>
+				</figure>
+				<p>
+				Even with all the polygons in place, the computer still needs a way to turn all the abstract data into a 2D image. If we think
+				of the computer screen as a camera peering into the world that the computer is rendering, then the first step is to determine
+				where the camera is placed. In most 3D modeling software, the camera is permanently placed at the origin. When the camera wants
+				to “move” it actually stays in place while the rest of the world is translated in order to give the camera a new view. This is
+				done because it is actually mathematically more efficient to translate the entire world than to translate the camera.
+				</p>
+				<p>
+				Once the appropriate camera location is determined, then 3D modeling programs will initialize a process known as rasterization
+				where it converts the 3D world into a 2D image. When rasterization occurs, a camera computes which polygons and points it is
+				supposed to see out of the camera and then essentially flattens them into a 2D image. The program will then apply the appropriate
+				textures and voila the abstract 3D world has been converted into a 2D image. This is the essential process by which 3D graphics
+				are rendered. 
+				</p>
+				<h3>Conclusion</h3>
+				<p>
+				This article was meant to be an extremely basic overview of how 3D graphics are represented internally by computers and how they
+				are rendered into a 2D image. It would be impossible to discuss every detail of computer graphics in this article. Topics missed
+				include lighting and shading, reflections, animation ect. Still, this extremely simplistic overview still shows how developers
+				have been able to use math ranging from geometry to linear algebra to simulate 3D worlds on a 2D screen.
+				</p>

@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Overwatch Counters</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Bootstrap core JavaScript -->
+	<script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="script.js"></script>
+
+    <link rel="stylesheet" href="../../css/theme_tweeks.css">
+	<style>
+		.hero {
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+		}
+		h3 {
+			clear: both;
+		}
+	</style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../../index.html" style="color:#ffffff">HOME</a></li>
+                    <li><a href="../../portfolio.html">PORTFOLIO</a></li>
+                    <li><a href="../../blog.html">BLOG (NEW)</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	
+	<div class="container bg-3 text-center">
+		<h1>Overwatch Counter Guide Version 2.0</h1>
+		<p>Tap a hero to see his/her counter picks</p>
+		<div class="hero_category">
+			<div id="row">
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-10">
+					<img src="../../images/genji.png" id="genji" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/mccree.png" id="mccree" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/pharah.png" id="pharah" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/sombra.png" id="sombra" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/reaper.png" id="reaper" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/soldier76.png" id="soldier76" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/tracer.png" id="tracer" class="hero img-responsive" onClick="heroClick(this.id)"/>
+				</div>
+				<div class="col-sm-1">
+				</div>
+			</div>
+			<h3>Offense</h3>
+		</div>
+		
+		<div class="hero_category">
+			<div id="row">
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-10">
+					<img src="../../images/bastion.png" id="bastion" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/hanzo.png" id="hanzo" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/junkrat.png" id="junkrat" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/mei.png" id="mei" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/torbjorn.png" id="torbjorn" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/widowmaker.png" id="widowmaker" class="hero img-responsive" onClick="heroClick(this.id)"/>
+				</div>
+				<div class="col-sm-1">
+				</div>
+			</div>
+			<h3>Defense</h3>
+		</div>
+		
+		<div class="hero_category">
+			<div id="row">
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-10">
+					<img src="../../images/dva.png" id="dva" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/orisa.png" id="orisa" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/reinhardt.png" id="reinhardt" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/roadhog.png" id="roadhog" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/winston.png" id="winston" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/zarya.png" id="zarya" class="hero img-responsive" onClick="heroClick(this.id)"/>
+				</div>
+				<div class="col-sm-1">
+				</div>
+			</div>
+			<h3>Tanks</h3>
+		</div>
+		
+		<div class="hero_category">
+			<div id="row">
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-10">
+					<img src="../../images/lucio.png" id="lucio" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/mercy.png" id="mercy" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/symmetra.png" id="symmetra" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/zenyatta.png" id="zenyatta" class="hero img-responsive" onClick="heroClick(this.id)"/>
+					<img src="../../images/ana.png" id="ana" class="hero img-responsive" onClick="heroClick(this.id)"/>
+				</div>
+				<div class="col-sm-1">
+				</div>
+			</div>
+		</div>
+		<h3>Support</h3>
+		<p class="hero_descr_text" id="firebender"></p>
+	</div>
+	
+    <!-- Footer -->
+    <footer class="container-fluid text-center bg-4">
+        <h4>Contact Me</h4>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <a href="https://www.facebook.com/Varghese777"><img class="icon" src="../../images/fb.png" /></a>
+                <a href="https://www.linkedin.com/in/royvarghesemathew"><img class="icon" src="../../images/linkdin.png" /></a>
+                <a href="https://github.com/Varghese77"><img class="icon" src="../../images/git.png" /></a>
+                <a href="mailto:RoyM77@gmail.com"><img class="icon" src="../../images/email.png" /></a>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
