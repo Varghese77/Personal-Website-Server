@@ -12,19 +12,30 @@ function display(name, output) {
   output;
 }
 
-display('Console', 'Hello and ' + 
-'welcome to Messenger. You are currently in the global chat room ' + 
-'Before we can begin you need to select select a user name. Type ' + 
-'<i>/help</i> for more info');
+socket.on('welcome', function(data) {
+  handle = data.handle;
+  display('Console', data.message);
+});
+
 
 sendButton.addEventListener('click', function(){
   var text = message.value.trim();
   message.value = '';
-
+  if (handle == undefined) {
+    return;
+  }
   if (text === ''){
     return;
   }
 
+  if (text.charAt(0) == '/') {
+    socket.emit('command', {
+        message: text,
+        handle: handle
+    });
+  }
+
+  /*
   if (text === '/help'){
     display('Console', '<br/>' + 
     '/help: Lists all of the possible commands<br/>' + 
@@ -40,6 +51,7 @@ sendButton.addEventListener('click', function(){
     display('Console', 'Please create a handle before continuing!');
     return;
   }
+  */
 
   socket.emit('chat', {
         message: text,
