@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.15.3",
+    "nimble": "0.0.2",
     "npm": "^5.0.4",
     "socket.io": "^2.0.3"
   },

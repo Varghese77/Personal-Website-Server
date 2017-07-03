@@ -1,0 +1,8 @@
+
+/help: Lists all of the possible commands
+/changename &ltuser-name&gt: Change your user name (no whitespace in name)
+/listpeople: Lists all the people currently online
+/listrooms: Lists all of the chat rooms
+/wisper &ltuser-name&gt &ltmessage&gt: Send a private message
+/createroom &ltroom-name&gt: Creates a room to join
+/join &ltroom&gt: Joins a room (Must exist)

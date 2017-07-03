@@ -1,4 +1,5 @@
 // Make connection
+// (^\/\S*)(?:[^\n\r\S]+(\S*))?(?:[^\n\r\S]+(.*))?
 var socket = io.connect('http://localhost:3000');
 
 var message = document.getElementById('message');
@@ -12,12 +13,6 @@ function display(name, output) {
   output;
 }
 
-socket.on('welcome', function(data) {
-  handle = data.handle;
-  display('Console', data.message);
-});
-
-
 sendButton.addEventListener('click', function(){
   var text = message.value.trim();
   message.value = '';
@@ -29,29 +24,12 @@ sendButton.addEventListener('click', function(){
   }
 
   if (text.charAt(0) == '/') {
+    var parts = parseCommand(text);
     socket.emit('command', {
         message: text,
-        handle: handle
+        parts: parts
     });
   }
-
-  /*
-  if (text === '/help'){
-    display('Console', '<br/>' + 
-    '/help: Lists all of the possible commands<br/>' + 
-    '/changename &ltuser-name&gt: Change your user name (no whitespace in name)<br/>' +
-    '/listpeople: Lists all the people currently online<br/>' + 
-    '/listrooms: Lists all of the chat rooms<br/>' + 
-    '/wisper &ltuser-name&gt &ltmessage&gt: Send a private message<br/>' + 
-    '/createroom: Creates a room to join<br/>');
-    return;
-  }
-
-  if (handle == undefined && text.indexOf('/changename') != 0) {
-    display('Console', 'Please create a handle before continuing!');
-    return;
-  }
-  */
 
   socket.emit('chat', {
         message: text,
@@ -59,16 +37,55 @@ sendButton.addEventListener('click', function(){
   });
 });
 
+// Parse Commands
+function parseCommand(rawText){
+  var parsingRegex = /(^\/\S*)(?:[^\n\r\S]+(\S*))?(?:[^\n\r\S]+(.*))?/;
+  var regexSubgroups = parsingRegex.exec(rawText);
+  if (!regexSubgroups) {
+    return null;
+  }
+
+  var parts = {}
+  var i = 1;
+  for (; i < regexSubgroups.length && regexSubgroups[i]; i++){
+    parts[i - 1] = regexSubgroups[i];
+  }
+  parts['size'] = i - 1;
+  for (; i < 3; i++){
+    parts[i - 1] = undefined;
+  }
+  return parts;
+}
+
+
+// Receiving Event Logic
+socket.on('welcome', function(data) {
+  handle = data.newName;
+  display('Console', data.message);
+});
+
 socket.on('chat', function(data){
     display(data.handle, data.message);
 });
 
+socket.on('console-message', function(data) {
+  display('Console', data.message);
+});
+
 socket.on('change-name', function(data){
   if (data.result === true) {
-    display('Console', 'Your name is now ' + data.handle);
-    handle = data.handle;
+    display('Console', 'Your name is now ' + data.newName);
+    handle = data.newName;
   } else {
     display('Console', 'Can\'t pick that name');
   }
+});
+
+socket.on('list', function (data){
+  var elements = '';
+  for (var prop in data) {
+    elements += prop + '<br/>';
+  }
+  display('', elements);
 });
 
