@@ -1,5 +1,4 @@
 // Make connection
-// (^\/\S*)(?:[^\n\r\S]+(\S*))?(?:[^\n\r\S]+(.*))?
 var socket = io.connect('http://localhost:3000');
 
 var message = document.getElementById('message');
@@ -8,9 +7,16 @@ var chatBox = document.getElementById('chat-box');
 
 var handle = undefined;
 
-function display(name, output) {
-  chatBox.innerHTML = chatBox.innerHTML + '<p class=\'messages\'><b>' + name + '</b>: ' + 
-  output;
+function display(name, output, color) {
+  var newMsg = document.createElement('p');
+  newMsg.setAttribute('class', 'messages');
+
+  if (color){
+    newMsg.style.color = color;
+  }
+
+  newMsg.innerHTML = '<p class=\'messages\'><b>' + name + '</b> ' + output;
+  chatBox.appendChild(newMsg);
 }
 
 sendButton.addEventListener('click', function(){
@@ -61,7 +67,7 @@ function parseCommand(rawText){
 // Receiving Event Logic
 socket.on('welcome', function(data) {
   handle = data.newName;
-  display('Console', data.message);
+  display('Console:', data.message);
 });
 
 socket.on('chat', function(data){
@@ -74,10 +80,10 @@ socket.on('console-message', function(data) {
 
 socket.on('change-name', function(data){
   if (data.result === true) {
-    display('Console', 'Your name is now ' + data.newName);
+    display('Console:', 'Your name is now ' + data.newName);
     handle = data.newName;
   } else {
-    display('Console', 'Can\'t pick that name');
+    display('Console:', 'Can\'t pick that name');
   }
 });
 
@@ -89,3 +95,7 @@ socket.on('list', function (data){
   display('', elements);
 });
 
+socket.on('messenger-error', function (data){
+  var errorMsg = data.message;
+  display('Error:', errorMsg, 'red');
+});
