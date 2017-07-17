@@ -17,9 +17,20 @@ var duration;  // Length of song in seconds
 var barsCanvas;
 var barsCtx;
 
-// Variables relevant to extracting real0time frequencies
+// Variables relevant to extracting realtime frequencies
 var bufferLength;  // number of frequencies to be extrafted via fft
 var dataArray; // Float32Array of relative frequency-amplitude percents
+
+var timeSlider;
+var startTime;
+var currentPercent;
+
+var drawing = false;
+
+function updateTime(deltaPercent){
+  timeSlider.value = currentPercent + deltaPercent;
+  console.log('tick to: ' + deltaPercent);
+}
 
 window.onresize = function(){resizeCanvas(barsCanvas)};
 
@@ -35,44 +46,72 @@ window.onload = function() {
       audioCtx.decodeAudioData(rawBinSoundBuf, function(buffer) {
         decodedBuf = buffer;
         duration = buffer.duration;
+        currentPercent = 0;
         playSong(0);
       });
     };
 
   }, false);
+  
+  // html objects which will get events for website functionality
+  timeSlider = document.getElementById('time');
+  var volumeSlider = document.getElementById('volume');
+  var speedSlider = document.getElementById('speed');
+  var smoothSlider = document.getElementById('smooth');
+  
+  timeSlider.value = 0;
+  volumeSlider.value = 25;
+  speedSlider.value = 50;
+  smoothSlider.value = 85;
+  
 
   // Prepare Time Slider
-  document.getElementById('time').addEventListener('input', function(){
-    var percent = document.getElementById('time').valueAsNumber / 100.0;
+  timeSlider.addEventListener('input', function(){
+    var percent = timeSlider.valueAsNumber / 100.0;
     if (sauce && duration){
       console.log(percent * duration + '/' + duration);
-      playSong(percent * duration);
+      currentPercent = percent * 100;
+      playSong(Math.floor(percent * duration));
+      
+      document.getElementById('time-label').innerText = 'Time [' +
+      Math.round(percent * 100) + '%]';
+      
+      var inputEvent = document.createEvent('Event');
+      inputEvent.initEvent('input', true, true);
+      
+      speedSlider.dispatchEvent(inputEvent);
+      smoothSlider.dispatchEvent(inputEvent);
     }
-  }, true);
+  }, false);
 
   // Prepare volume Slider
-  document.getElementById('volume').addEventListener('input', function(){
-    var timeValue = document.getElementById('volume').valueAsNumber;
+  volumeSlider.addEventListener('input', function(){
+    var rawValue = volumeSlider.valueAsNumber;
 
-    gainNode.gain.value = timeValue / 25.0;
-    document.getElementById('volume-label').innerText = 'Volume [' + timeValue + ']';
-  }, true);
+    gainNode.gain.value = rawValue / 25.0;
+    document.getElementById('volume-label').innerText = 'Volume [' + rawValue +
+      ']';
+  }, false);
 
   // Prepare Speed Slider
-  document.getElementById('speed').addEventListener('input', function(){
+  speedSlider.addEventListener('input', function(){
     if (sauce){
-      var playbackSpeed = document.getElementById('speed').valueAsNumber;
-      sauce.playbackRate.value = playbackSpeed / 50.0;
+      var rawValue = speedSlider.valueAsNumber;
+      sauce.playbackRate.value = rawValue / 50.0;
 
       document.getElementById('speed-label').innerText = 'Playback Speed [' +
-        (playbackSpeed / 50.0) + 'x]';
+        (rawValue / 50.0) + 'x]';
     }
-  }, true);
+  }, false);
 
   // Prepare Smooth Slider
-  document.getElementById('smooth').addEventListener('input', function(){
-      analyser.smoothingTimeConstant = document.getElementById('smooth').valueAsNumber / 100.0;
-  }, true);
+  smoothSlider.addEventListener('input', function(){
+      var rawValue = smoothSlider.valueAsNumber;
+      analyser.smoothingTimeConstant = rawValue / 100.0;
+      
+      document.getElementById('smooth-label').innerText = 'Smoothing Time ' + 
+        'Constant [' + (rawValue / 100) + ']';
+  }, false);
 
   // Initialize Canvas
   barsCanvas = document.getElementById("myCanvas");
@@ -82,10 +121,10 @@ window.onload = function() {
   barsCtx.fillRect(0, 0, barsCanvas.width, barsCanvas.height);
 
   // Set Analyser
-  analyser.fftSize = 128;
+  analyser.fftSize = 64;
   bufferLength = analyser.frequencyBinCount;  // analyser.fftSize / 2 == 128
   dataArray = new Float32Array(bufferLength);  // 128 bytes, stores requencies
-}
+};
 
 // Reloads AudioSourceBufferNode and starts playing from the
 // time specified in the parameter in seconds. Also starts drawing
@@ -98,9 +137,13 @@ function playSong(time) {
   sauce.buffer = decodedBuf;
     
   sauce.connect(gainNode);
+  startTime = audioCtx.currentTime;
   sauce.start(0, time);
   barsCtx.clearRect(0, 0, barsCanvas.width, barsCanvas.height);
-  draw();
+  if (!drawing){
+    drawing = true;
+    draw();
+  }
 }
 
 // Updates Graphics on the canvas
@@ -110,6 +153,8 @@ function draw() {
   requestAnimationFrame(draw);
 
   analyser.getFloatFrequencyData(dataArray);
+  var currTimePercent = ((audioCtx.currentTime - startTime) / duration) * 100;
+  updateTime(currTimePercent);
 
   barsCtx.fillStyle = 'rgb(0, 0, 0)';
   barsCtx.fillRect(0, 0, barsCanvas.width, barsCanvas.height);
@@ -121,7 +166,8 @@ function draw() {
     var barHeight = dataArray[i];
 
     barsCtx.fillStyle = 'rgb(25, ' + (Math.ceil(dataArray[i]) + 150) + ', 25)';
-    barsCtx.fillRect(xOffset, -(2 * barHeight), barWidth, barsCanvas.height + (2 * barHeight));
+    barsCtx.fillRect(xOffset, -barHeight, barWidth, barsCanvas.height +
+      barHeight);
     xOffset+= barWidth + 1;
   }
 }

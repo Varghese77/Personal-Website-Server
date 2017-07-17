@@ -18,13 +18,13 @@ function loadJSON(addr) {
 }
 
 // loads hero data if needed
-var stored = localStorage['hero_data'];
-if (stored) {
-	hero_data = JSON.parse(stored);
-} else {
-	hero_data = loadJSON('https://varghese77.github.io/apps/overwatch_counters/hero_data.json');
-	localStorage['hero_data'] = JSON.stringify(hero_data);
-}
+//var stored = localStorage['hero_data'];
+//if (stored) {
+	//hero_data = JSON.parse(stored);
+//} else {
+	hero_data = loadJSON('https://personal-website-server-vargs77.c9users.io/apps/overwatch_counters/hero_data.json');
+	//localStorage['hero_data'] = JSON.stringify(hero_data);
+//}
 
 // Array of hero icon buttons in the HTML document
 var heros = document.getElementsByClassName('hero');

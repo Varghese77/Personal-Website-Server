@@ -1,5 +1,6 @@
 // Make connection
-var socket = io.connect('http://localhost:3000');
+/*global io*/
+var socket = io.connect('https://personal-website-server-vargs77.c9users.io:8080');
 
 var message = document.getElementById('message');
 var sendButton = document.getElementById('send');
@@ -19,7 +20,7 @@ function display(name, output, color) {
   chatBox.appendChild(newMsg);
 }
 
-sendButton.addEventListener('click', function(){
+function send(){
   var text = message.value.trim();
   message.value = '';
   if (handle == undefined) {
@@ -41,7 +42,14 @@ sendButton.addEventListener('click', function(){
         message: text,
         handle: handle
   });
-});
+}
+
+sendButton.addEventListener('click', send);
+message.addEventListener('keyup', function(event){
+  if (event.keyCode == 13) {
+    send();
+  }
+})
 
 // Parse Commands
 function parseCommand(rawText){
