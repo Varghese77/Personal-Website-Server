@@ -1,6 +1,6 @@
 // Make connection
 /*global io*/
-var socket = io.connect('https://personal-website-server-vargs77.c9users.io:8080');
+var socket = io.connect('80, https://portal.azure.com');
 
 var message = document.getElementById('message');
 var sendButton = document.getElementById('send');
