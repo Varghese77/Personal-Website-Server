@@ -4,8 +4,7 @@ var http = require('http');
 var messageServer = require('./lib/messenger_server.js');
 
 // Networking Info
-var ip = process.env.IP;
-var port = process.env.PORT;
+var port = 80;
 
 
 // Set Up HTTP and Sockets.io Server

@@ -22,7 +22,7 @@ function loadJSON(addr) {
 //if (stored) {
 	//hero_data = JSON.parse(stored);
 //} else {
-	hero_data = loadJSON('http://roy-mathew.azurewebsites.net/apps/overwatch_counters/hero_data.json');
+	hero_data = loadJSON('http://royvmathew.com/apps/overwatch_counters/hero_data.json');
 	//localStorage['hero_data'] = JSON.stringify(hero_data);
 //}
 
