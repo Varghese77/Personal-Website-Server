@@ -6,7 +6,7 @@ function loadArticle(num) {
     xmlHttp.onreadystatechange = function() { 
         document.getElementById(getArticleID(num)).innerHTML = xmlHttp.responseText;
     }
-    xmlHttp.open("GET", '/blog_text/' + num, true);
+    xmlHttp.open("GET", '/data/raw-text/blog-text/' + num, true);
     xmlHttp.send(null);
 }
 

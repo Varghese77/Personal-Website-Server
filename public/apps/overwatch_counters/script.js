@@ -18,13 +18,13 @@ function loadJSON(addr) {
 }
 
 // loads hero data if needed
-//var stored = localStorage['hero_data'];
-//if (stored) {
-	//hero_data = JSON.parse(stored);
-//} else {
-	hero_data = loadJSON('http://52.37.179.153/apps/overwatch_counters/hero_data.json');
-	//localStorage['hero_data'] = JSON.stringify(hero_data);
-//}
+var stored = localStorage['hero_data'];
+if (stored) {
+	hero_data = JSON.parse(stored);
+} else {
+	hero_data = loadJSON('/data/json/hero_data.json');
+	localStorage['hero_data'] = JSON.stringify(hero_data);
+}
 
 // Array of hero icon buttons in the HTML document
 var heros = document.getElementsByClassName('hero');

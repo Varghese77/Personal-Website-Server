@@ -1,6 +1,6 @@
 // Make connection
 /*global io*/
-var socket = io.connect('http://52.37.179.153');
+var socket = io.connect('/');
 
 var message = document.getElementById('message');
 var sendButton = document.getElementById('send');
