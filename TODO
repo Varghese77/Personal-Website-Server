@@ -4,22 +4,5 @@
 4. Cache Everything
 5. Create Messenger app
 6. Create Testing Suite
-7. Secure Server
+7. Secure Server : DONE
 8. Fix Style
-9. Add this later...
-
-/*
-function injectSetupData(dir, templateName, newName) {
-  var file = dir + templateName;
-  var newFile = dir + newName;
-  var fileStr = fs.readFileSync(file, 'utf8');
-  fs.writeFileSync(newFile, '// The following two lines are dynamically ' +
-    'created on the server\n', 'utf8');
-  fs.appendFileSync(newFile, 'var setupData = ' + JSON.stringify(setupData) +
-    '\n\n', 'utf8');
-  fs.appendFileSync(newFile, fileStr, 'utf8');
-}
-
-injectSetupData('./public/apps/messenger/', 'template.js', 'script.js');
-*/
-
