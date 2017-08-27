@@ -6,6 +6,12 @@ var message = document.getElementById('message');
 var sendButton = document.getElementById('send');
 var chatBox = document.getElementById('chat-box');
 
+var offerOptions = {
+  offerToReceiveAudio: 1,
+  offerToReceiveVideo: 0,
+  voiceActivityDetection: false
+};
+
 var handle = undefined;
 
 function display(name, output, color) {

@@ -6,7 +6,7 @@ var gainNode = audioCtx.createGain();
 var analyser = audioCtx.createAnalyser();
 gainNode.connect(analyser);
 analyser.connect(audioCtx.destination);
-var sauce = undefined;
+var sauce = undefined;  // represents 'source'
 
 // buffer to contain raw binary sound data
 var rawBinSoundBuf;  // Raw File Bimary Data
