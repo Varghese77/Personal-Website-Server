@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <title>Overwatch Counters</title>
+    <title>Messenger</title>
 
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
@@ -19,9 +19,11 @@
 
   <link rel="stylesheet" href="../../css/theme_tweeks.css">
   <style>
-		#chat {
-			display: inline-block;
-		}
+	#chat {
+		display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+	}
     #chat-box {
       overflow: auto;
       background: #f9f9f9;
@@ -34,6 +36,41 @@
       margin: 0px;
       width: 100%;
     }
+    #down {
+      margin-top: 25px;
+      padding: 0px;
+      padding-bottom: 25px;
+    }
+    #down_button {
+	  border: 0px;
+	  width: 50px;
+	  margin: 0 auto;
+    }
+    #up_button {
+	  border: 0px;
+	  width: 50px;
+	  margin: 0 auto;
+    }
+    #call-box {
+        max-width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+    .call-label{
+      border-style: solid;
+      border-color: #ffffff;
+    }
+    #hangup-label {
+        background-color: #808080;
+    }
+    #pickup-label {
+        background-color: green;
+    }
+    .call-icon{
+        width: 50px;
+        display: inline-block;
+    }
 	</style>
   <script>
     window.onload = reSize;
@@ -44,6 +81,9 @@
       var windowHeight = window.innerHeight;
       chatBox.style.width = windowWidth * (3/4) + 'px';
       chatBox.style.height = windowHeight * (1/2) + 'px';
+
+      var bootstrapBody = document.getElementById('bootstrap-body');
+      bootstrapBody.style.width = windowWidth * (3/4) + 'px';
     }
   </script>
 </head>
@@ -68,10 +108,11 @@
             </div>
         </div>
     </nav>
-	
-	<div class="container bg-3 text-center">
-		<h1>Overwatch Counter Guide Version 2.0</h1>
-		<p>Tap a hero to see his/her counter picks</p>
+    
+    <!-- App Body -->
+	<div id='bootstrap-body' class="container bg-3 text-center">
+		<h1>Messenger 1.0</h1>
+		<p>Type Something Below or Expand for VOIP functionality</p>
         <div id='chat'>
             <div class="row">
                 <div id='chat-box' class="col-sm-12"></div>
@@ -84,9 +125,30 @@
                 <button id="send" class="col-sm-6">Send</button>
             </div>
         </div>
+
+        <div class="container-fluid text-center" id="down">
+            <p>Click to expand VOIP functionality</p>
+            <img src="../../images/down.jpg" id="down_button"/>
+        </div>
+
+        <div id="call-box">
+            <div class="row">
+                <input id="callee-handle" type="text" placeholder="Enter a handle to call"  class="col-sm-12"/>
+            </div>
+            <div class="row">
+                <div id='hangup-label' class="col-sm-6 call-label">
+                    <img src="../../images/call_hangup.png" class="call-icon"/>
+                </div>
+                <div id='pickup-label' class="col-sform-6 call-label">
+                    <img src="../../images/call_pickup.png" class="call-icon"/>
+                </div>
+            </div>
+        </div>     
+
+    
         <audio id="remote_audio" autoplay controls></audio>
         <button id="callButton">Call</button>
-	</div>
+    </div>
 	
     <!-- Footer -->
     <footer class="container-fluid text-center bg-4">

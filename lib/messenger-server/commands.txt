@@ -6,3 +6,6 @@
 /whisper &ltuser-name&gt &ltmessage&gt: Send a private message
 /createroom &ltroom-name&gt: Creates a room to join
 /join &ltroom&gt: Joins a room (Must exist)
+/call &ltuser-name&gt: Initiate a call with specified user
+/accept: Accept a call
+/decline: Decline a call

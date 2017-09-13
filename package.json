@@ -12,7 +12,8 @@
   },
   "devDependencies": {
     "eslint": "^4.1.1",
-    "eslint-config-google": "^0.8.0"
+    "eslint-config-google": "^0.8.0",
+    "flow-remove-types": "^1.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
