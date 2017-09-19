@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,81 +12,84 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
-	
-	<!-- Bootstrap core JavaScript -->
-	<script src="../../js/jquery.min.js"></script>
-  <script src="../../js/bootstrap.min.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
 
-  <link rel="stylesheet" href="../../css/theme_tweeks.css">
-  <style>
-	#chat {
-		display: inline-block;
-        margin-left: auto;
-        margin-right: auto;
-	}
-    #chat-box {
-      overflow: auto;
-      background: #f9f9f9;
-      border-style: solid;
-      border-color: #000000;
-      text-align: left;
-    }
-    .messages {
-      padding: 0px;
-      margin: 0px;
-      width: 100%;
-    }
-    #down {
-      margin-top: 25px;
-      padding: 0px;
-      padding-bottom: 25px;
-    }
-    #down_button {
-	  border: 0px;
-	  width: 50px;
-	  margin: 0 auto;
-    }
-    #up_button {
-	  border: 0px;
-	  width: 50px;
-	  margin: 0 auto;
-    }
-    #call-box {
-        max-width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-        
-    }
-    .call-label{
-      border-style: solid;
-      border-color: #ffffff;
-    }
-    #hangup-label {
-        background-color: #808080;
-    }
-    #pickup-label {
-        background-color: green;
-    }
-    .call-icon{
-        width: 50px;
-        display: inline-block;
-    }
-	</style>
-  <script>
-    window.onload = reSize;
-    window.onresize = reSize;
-    function reSize(){
-      var chatBox = document.getElementById('chat-box');
-      var windowWidth = window.innerWidth;
-      var windowHeight = window.innerHeight;
-      chatBox.style.width = windowWidth * (3/4) + 'px';
-      chatBox.style.height = windowHeight * (1/2) + 'px';
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
 
-      var bootstrapBody = document.getElementById('bootstrap-body');
-      bootstrapBody.style.width = windowWidth * (3/4) + 'px';
-    }
-  </script>
+    <link rel="stylesheet" href="../../css/theme_tweeks.css">
+    <style>
+        #chat {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #chat-box {
+            overflow: auto;
+            background: #f9f9f9;
+            border-style: solid;
+            border-color: #000000;
+            text-align: left;
+        }
+
+        .messages {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+        }
+
+        #revealer {
+            margin-top: 25px;
+            padding: 0px;
+            padding-bottom: 25px;
+        }
+
+        #revealerButton {
+            border: 0px;
+            width: 50px;
+            margin: 0 auto;
+        }
+
+        #call-box {
+            max-width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .call-label {
+            border-style: solid;
+            border-color: #ffffff;
+        }
+
+        #hangup-label {
+            background-color: #808080;
+        }
+
+        #pickup-label {
+            background-color: green;
+        }
+
+        .call-icon {
+            width: 50px;
+            display: inline-block;
+        }
+    </style>
+    <script>
+        window.onload = reSize;
+        window.onresize = reSize;
+        function reSize() {
+            var chatBox = document.getElementById('chat-box');
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+            chatBox.style.width = windowWidth * (3 / 4) + 'px';
+            chatBox.style.height = windowHeight * (1 / 2) + 'px';
+
+            var bootstrapBody = document.getElementById('bootstrap-body');
+            bootstrapBody.style.width = windowWidth * (3 / 4) + 'px';
+        }
+    </script>
 </head>
 
 <body>
@@ -108,17 +112,17 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- App Body -->
-	<div id='bootstrap-body' class="container bg-3 text-center">
-		<h1>Messenger 1.0</h1>
-		<p>Type Something Below or Expand for VOIP functionality</p>
+    <div id='bootstrap-body' class="container bg-3 text-center">
+        <h1>Messenger 1.0</h1>
+        <p>Type Something Below or Expand for VOIP functionality</p>
         <div id='chat'>
             <div class="row">
                 <div id='chat-box' class="col-sm-12"></div>
             </div>
             <div class="row">
-                <input id="message" type="text" placeholder="Message"  class="col-sm-12"/>
+                <input id="message" type="text" placeholder="Message" class="col-sm-12" />
             </div>
             <div class="row">
                 <button id="readme" class="col-sm-6">README</button>
@@ -126,30 +130,28 @@
             </div>
         </div>
 
-        <div class="container-fluid text-center" id="down">
-            <p>Click to expand VOIP functionality</p>
-            <img src="../../images/down.jpg" id="down_button"/>
+        <div class="container-fluid text-center" id="revealer">
+            <p></p>
         </div>
 
         <div id="call-box">
             <div class="row">
-                <input id="callee-handle" type="text" placeholder="Enter a handle to call"  class="col-sm-12"/>
+                <input id="callee-handle" type="text" placeholder="Enter a handle to call" class="col-sm-12" />
             </div>
             <div class="row">
                 <div id='hangup-label' class="col-sm-6 call-label">
-                    <img src="../../images/call_hangup.png" class="call-icon"/>
+                    <img src="../../images/call_hangup.png" class="call-icon" />
                 </div>
                 <div id='pickup-label' class="col-sform-6 call-label">
-                    <img src="../../images/call_pickup.png" class="call-icon"/>
+                    <img src="../../images/call_pickup.png" class="call-icon" />
                 </div>
             </div>
-        </div>     
+        </div>
 
-    
+
         <audio id="remote_audio" autoplay controls></audio>
-        <button id="callButton">Call</button>
     </div>
-	
+
     <!-- Footer -->
     <footer class="container-fluid text-center bg-4">
         <h4>Contact Me</h4>
@@ -167,6 +169,10 @@
         </div>
     </footer>
 </body>
+<script type="text/javascript" src="socketlogger.js"></script>
+<script type="text/javascript" src="chatbox.js"></script>
+<script type="text/javascript" src="callbox.js"></script>
+<script type="text/javascript" src="remoteaudio.js"></script>
 <script type="text/javascript" src="script.js"></script>
-<script type="text/javascript" src="call.js"></script>
+
 </html>
