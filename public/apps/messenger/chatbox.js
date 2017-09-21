@@ -74,7 +74,7 @@ function ChatBox(socket, message, sendButton, chatDisplay, handle) {
    * 
    * @returns nothing, return used as early exit
    */
-  let send = function() {
+  let send = () => {
     var text = this.message.value.trim();
     this.message.value = "";
     if (this.handle == undefined) {

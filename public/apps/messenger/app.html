@@ -40,7 +40,7 @@
             width: 100%;
         }
 
-        #revealer {
+        #revealer_up #revealer_down{
             margin-top: 25px;
             padding: 0px;
             padding-bottom: 25px;
@@ -79,6 +79,7 @@
     <script>
         window.onload = reSize;
         window.onresize = reSize;
+
         function reSize() {
             var chatBox = document.getElementById('chat-box');
             var windowWidth = window.innerWidth;
@@ -130,7 +131,10 @@
             </div>
         </div>
 
-        <div class="container-fluid text-center" id="revealer">
+        <div class="container-fluid text-center" id="revealer_down">
+            <p></p>
+        </div>
+        <div class="container-fluid text-center" id="revealer_up">
             <p></p>
         </div>
 
@@ -146,10 +150,8 @@
                     <img src="../../images/call_pickup.png" class="call-icon" />
                 </div>
             </div>
+            <audio id="remote_audio" autoplay controls></audio>
         </div>
-
-
-        <audio id="remote_audio" autoplay controls></audio>
     </div>
 
     <!-- Footer -->

@@ -1,18 +1,33 @@
 function setDownButton() {
-  var revealer = document.getElementById('revealer');
-  revealer.innerHTML = '' +
+  var revealerUp = document.getElementById('revealer_up');
+  revealerUp.innerHTML = '';
+  revealerUp.style.display = 'none';
+
+  $("#call-box").slideToggle();
+
+  var revealerDown = document.getElementById('revealer_down');
+  revealerDown.innerHTML = '' +
   '<p id=\'revealerParagraph\'>Click to expand VOIP functionality</p>' + 
   '<img src=\"../../images/down.jpg" id="revealerButton\" />';
 
   document.getElementById('revealerButton').onclick = setUpButton;
+  revealerDown.style.display = 'block';
 }
+
 function setUpButton() {
-  var revealer = document.getElementById('revealer');
-  revealer.innerHTML = '' +
+  var revealerDown = document.getElementById('revealer_down');
+  revealerDown.innerHTML = '';
+  revealerDown.style.display = 'none';
+  
+  $("#call-box").slideToggle();
+
+  var revealerUp = document.getElementById('revealer_up');
+  revealerUp.innerHTML = '' +
   '<img src=\"../../images/up.png" id="revealerButton\" />' + 
   '<p id=\'revealerParagraph\'>Click to Collapse VOIP functionality</p>';
 
   document.getElementById('revealerButton').onclick = setDownButton;
+  revealerUp.style.display = 'block';
 }
 setDownButton();
 
