@@ -140,34 +140,34 @@ function CallBox(callBoxBuilder) {
 
   // Receiving Event Logic Below
   var thisCallBox = this;
-  this.socket.logAndReceive("Call-Offer", function(data) {
+  this.socket.logAndReceive("Call-Offer", function (data) {
     thisCallBox.callPartner = data.callPartner;
     thisCallBox.setAcceptingCallStatus();
     chatBox.display(
       "Console:",
       data.callerHandle +
-        " is calling you, either press the pickup " +
-        "button below to accept or the hangup button to decline. In 10 seconds" +
-        " you will auto-decline",
+      " is calling you, either press the pickup " +
+      "button below to accept or the hangup button to decline. In 10 seconds" +
+      " you will auto-decline",
       "green"
     );
   });
 
-  this.socket.logAndReceive("Call-TimeOut", function() {
+  this.socket.logAndReceive("Call-TimeOut", function () {
     thisCallBox.setNotInCallStatus();
     remoteAudio.endStream();
     chatBox.display("Console:", "Call Timed Out!", "red");
   });
 
-  this.socket.logAndReceive("Call-Result", function(data) {
+  this.socket.logAndReceive("Call-Result", function (data) {
     if (data.result) {
       thisCallBox.setInCallStatus();
       remoteAudio.signalCall(data.isInitiator);
       chatBox.display(
         "Console:",
         "Call Accepted, initializing ICE-signaling " +
-          "to establish a peer-to-peer connection with " +
-          data.callPartner,
+        "to establish a peer-to-peer connection with " +
+        data.callPartner,
         "green"
       );
     } else {
