@@ -41,7 +41,7 @@ function RemoteAudio(socket, audioElement) {
   pc.onicecandidate = function(e) {
     onIceCandidate(pc, e);
   };
-  pc.ontrack = gotRemoteStream;
+  pc.onaddstream = gotRemoteStream;
 
   /**
    * Receives a stream and stores it locally
@@ -54,9 +54,7 @@ function RemoteAudio(socket, audioElement) {
   function gotStream(stream) {
     localStream = stream;
 
-    localStream.getAudioTracks().forEach(function(track) {
-      pc.addTrack(track, localStream);
-    });
+    pc.addStream(localStream);
 
     if (isCaller) {
       pc.createOffer(offerOptions).then(gotLocalDescription, () => {
@@ -72,8 +70,8 @@ function RemoteAudio(socket, audioElement) {
    * @param {any} e - 
    */
   function gotRemoteStream(e) {
-    if (audioPlayer.srcObject !== e.streams[0]) {
-      audioPlayer.srcObject = e.streams[0];
+    if (audioPlayer.srcObject !== e.stream) {
+      audioPlayer.srcObject = e.stream;
     }
   }
 

@@ -78,22 +78,13 @@
             width: 50px;
             display: inline-block;
         }
-    </style>
-    <script>
-        window.onload = reSize;
-        window.onresize = reSize;
-
-        function reSize() {
-            var chatBox = document.getElementById('chat-box');
-            var windowWidth = window.innerWidth;
-            var windowHeight = window.innerHeight;
-            chatBox.style.width = windowWidth * (3 / 4) + 'px';
-            chatBox.style.height = windowHeight * (1 / 2) + 'px';
-
-            var bootstrapBody = document.getElementById('bootstrap-body');
-            bootstrapBody.style.width = windowWidth * (3 / 4) + 'px';
+        #callee-handle {
+            width: 100%
         }
-    </script>
+        #remote_audio {
+            visibility: hidden
+        }
+    </style>
 </head>
 
 <body>
@@ -119,8 +110,12 @@
 
     <!-- App Body -->
     <div id='bootstrap-body' class="container bg-3 text-center">
+
+        <!-- Heading Text -->
         <h1>Messenger 1.0</h1>
         <p>Type Something Below or Expand for VOIP functionality</p>
+
+        <!-- Chat Box -->
         <div id='chat'>
             <div class="row">
                 <div id='chat-box' class="col-sm-12"></div>
@@ -134,6 +129,7 @@
             </div>
         </div>
 
+        <!-- Call Box -->
         <div id="call-box">
             <div class="row">
                 <input id="callee-handle" type="text" placeholder="Enter a handle to call" class="col-sm-12" />
@@ -149,6 +145,8 @@
             <audio id="remote_audio" autoplay controls></audio>
         </div>
     </div>
+
+    <!-- Revealer Buttons -->
     <div class="container-fluid text-center" id="revealer_down">
         <p></p>
     </div>
@@ -173,6 +171,24 @@
         </div>
     </footer>
 </body>
+<script>
+        window.onload = reSize;
+        window.onresize = reSize;
+
+        function reSize() {
+            var chatBox = document.getElementById('chat-box');
+            var callBox = document.getElementById('call-box');
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+            chatBox.style.width = windowWidth * (3 / 4) + 'px';
+            chatBox.style.height = windowHeight * (1 / 2) + 'px';
+
+            callBox.style.width = windowWidth * (3 / 4) + 'px';
+
+            var bootstrapBody = document.getElementById('bootstrap-body');
+            bootstrapBody.style.width = windowWidth * (3 / 4) + 'px';
+        }
+    </script>
 <script type="text/javascript" src="socketlogger.js"></script>
 <script type="text/javascript" src="chatbox.js"></script>
 <script type="text/javascript" src="callbox.js"></script>

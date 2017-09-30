@@ -1,33 +1,35 @@
 function setDownButton() {
   $("#call-box").slideToggle();
 
-  var revealerUp = document.getElementById('revealer_up');
-  revealerUp.innerHTML = '';
-  revealerUp.style.display = 'none';
+  var revealerUp = document.getElementById("revealer_up");
+  revealerUp.innerHTML = "";
+  revealerUp.style.display = "none";
 
-  var revealerDown = document.getElementById('revealer_down');
-  revealerDown.innerHTML = '' +
-    '<p id=\'revealerParagraph\'>Click to expand VOIP functionality</p>' +
-    '<img src=\"../../images/down.jpg" id="revealerButton\" />';
+  var revealerDown = document.getElementById("revealer_down");
+  revealerDown.innerHTML =
+    "" +
+    "<p id='revealerParagraph'>Click to expand VOIP functionality</p>" +
+    '<img src="../../images/down.jpg" id="revealerButton" />';
 
-  document.getElementById('revealerButton').onclick = setUpButton;
-  revealerDown.style.display = 'block';
+  document.getElementById("revealerButton").onclick = setUpButton;
+  revealerDown.style.display = "block";
 }
 
 function setUpButton() {
   $("#call-box").slideToggle();
 
-  var revealerDown = document.getElementById('revealer_down');
-  revealerDown.innerHTML = '';
-  revealerDown.style.display = 'none';
+  var revealerDown = document.getElementById("revealer_down");
+  revealerDown.innerHTML = "";
+  revealerDown.style.display = "none";
 
-  var revealerUp = document.getElementById('revealer_up');
-  revealerUp.innerHTML = '' +
-    '<img src=\"../../images/up.png" id="revealerButton\" />' +
-    '<p id=\'revealerParagraph\'>Click to Collapse VOIP functionality</p>';
+  var revealerUp = document.getElementById("revealer_up");
+  revealerUp.innerHTML =
+    "" +
+    '<img src="../../images/up.png" id="revealerButton" />' +
+    "<p id='revealerParagraph'>Click to Collapse VOIP functionality</p>";
 
-  document.getElementById('revealerButton').onclick = setDownButton;
-  revealerUp.style.display = 'block';
+  document.getElementById("revealerButton").onclick = setDownButton;
+  revealerUp.style.display = "block";
 }
 setDownButton();
 
@@ -41,7 +43,10 @@ var chatBox = new ChatBox(
   document.getElementById("chat-box")
 );
 
-var isValidBrowser = (typeof InstallTrigger !== 'undefined') && window.RTCPeerConnection;
+var isValidBrowser =
+  (typeof InstallTrigger !== "undefined" ||
+    navigator.userAgent.toLowerCase().indexOf("chrome") > -1) &&
+  window.RTCPeerConnection;
 
 if (isValidBrowser) {
   var audioPlayer;
@@ -55,19 +60,19 @@ if (isValidBrowser) {
     remoteAudio: remoteAudio,
     pickupButton: document.getElementById("pickup-label"),
     hangupButton: document.getElementById("hangup-label"),
-    calleeHandleTextBox: document.getElementById("callee-handle"),
+    calleeHandleTextBox: document.getElementById("callee-handle")
   });
 } else {
   chatBox.display(
-    'Console',
-    'You must use Firefox to enable VOIP Functionality!',
-    'red'
-  )
+    "Console",
+    "You must use Firefox to enable VOIP Functionality!",
+    "red"
+  );
 
   // Make elements related to VOIP functionality hidden
-  document.getElementById('revealer_down').style.visibility = 'hidden';
-  document.getElementById('revealer_up').style.visibility = 'hidden';
-  document.getElementById('pickup-label').style.visibility = 'hidden';
-  document.getElementById('hangup-label').style.visibility = 'hidden';
-  document.getElementById('callee-handle').style.visibility = 'hidden';
+  document.getElementById("revealer_down").style.visibility = "hidden";
+  document.getElementById("revealer_up").style.visibility = "hidden";
+  document.getElementById("pickup-label").style.visibility = "hidden";
+  document.getElementById("hangup-label").style.visibility = "hidden";
+  document.getElementById("callee-handle").style.visibility = "hidden";
 }

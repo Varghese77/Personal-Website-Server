@@ -1,18 +1,29 @@
 // Module Dependencies
-var express = require("express");
-var http = require("http");
-var messageServer = require("./lib/messenger-server");
-var fs = require("fs");
+let express = require("express");
+let http = require("http");
+let https = require('https');
+let messageServer = require("./lib/messenger-server");
+let fs = require("fs");
+
+// Encryption Cert and Key
+let privateKey  = fs.readFileSync('ssl/privkey.pem');
+let certificate = fs.readFileSync('ssl/fullchain.pem');
+let credentials = {key: privateKey, cert: certificate};
 
 // Initial SetUp Data
-var setupData = JSON.parse(fs.readFileSync("setup-data.json"), "utf8");
+let setupData = JSON.parse(fs.readFileSync("setup-data.json"), "utf8");
 
-// Set Up HTTP and Sockets.io Server
-var app = express();
+// Set Up HTTP redirect to HTTPS
+let app = express();
 app.use(express.static("public"));
-var server = http.createServer(app);
-server.listen(setupData.port.toString(), function() {
-  console.log("Server is listening on port " + setupData.port);
-});
+let httpServer = http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    console.log("https://" + req.headers['host'] + req.url)
+    res.end();
+}).listen(80);
 
-var io = messageServer(server);
+// HTTPS Server
+var httpsServer = https.createServer(credentials, app).listen(443);
+
+messageServer(httpsServer);
+console.log('End of Server.js');
