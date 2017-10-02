@@ -1,5 +1,9 @@
+var isInitiating = true;
+
 function setDownButton() {
+if (!isInitiating){  // first time on load should have no animation
   $("#call-box").slideToggle();
+}
 
   var revealerUp = document.getElementById("revealer_up");
   revealerUp.innerHTML = "";
@@ -32,6 +36,7 @@ function setUpButton() {
   revealerUp.style.display = "block";
 }
 setDownButton();
+isInitiating = false;
 
 // Make connection
 var socket = new SocketLogger(io.connect("/"));
