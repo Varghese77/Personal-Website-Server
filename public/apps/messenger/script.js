@@ -1,9 +1,7 @@
 var isInitiating = true;
 
 function setDownButton() {
-if (!isInitiating){  // first time on load should have no animation
   $("#call-box").slideToggle();
-}
 
   var revealerUp = document.getElementById("revealer_up");
   revealerUp.innerHTML = "";
@@ -20,7 +18,9 @@ if (!isInitiating){  // first time on load should have no animation
 }
 
 function setUpButton() {
-  $("#call-box").slideToggle();
+    if (!isInitiating){  // first time on load should have no animation
+        $("#call-box").slideToggle();
+    }
 
   var revealerDown = document.getElementById("revealer_down");
   revealerDown.innerHTML = "";
@@ -35,7 +35,7 @@ function setUpButton() {
   document.getElementById("revealerButton").onclick = setDownButton;
   revealerUp.style.display = "block";
 }
-setDownButton();
+setUpButton();
 isInitiating = false;
 
 // Make connection
@@ -70,7 +70,7 @@ if (isValidBrowser) {
 } else {
   chatBox.display(
     "Console",
-    "You must use Firefox to enable VOIP Functionality!",
+    "You must use Firefox or Chrome to enable VOIP Functionality!",
     "red"
   );
 

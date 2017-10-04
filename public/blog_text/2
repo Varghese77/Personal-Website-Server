@@ -1,11 +1,11 @@
 				<h1>A Basic Guide to How 3D Graphics are Rendered</h1>
 				<p>
-				One of the greatest developments of computer generated imagery came via the discovery that 3D environments could be 
+				One of the greatest developments in computer generated imagery came via the discovery that 3D environments could be 
 				computationally rendered unto a 2D screen. This concept has revolutionized the entertainment industry leading to the 
-				creation of classic animated films such as Pixar’s Toy Story to block buster videogames. The first videogame that I ever
+				creation of classic animated films to block buster videogames. The first videogame that I ever
 				played was The Legend of Zelda: Ocarina of Time and it is probably the single largest motivation for me deciding to major
 				in computer science. I was initially amazed at how the game could create such a complex and beautiful 3D world. As I got older,
-				I became more curious about how computers which process 1s and 0s could manipulate information to create this 3D world. Below 
+				I became more curious about how computers could process 1s and 0s to manipulate information and create this 3D world. Below 
 				is a very basic overview of how this occurs.
 				</p>
 				<h3>3D Cartesian Graphs</h3>
@@ -21,7 +21,7 @@
 				all at once; the creators of Final Fantasy XV estimate that each character will have about 100,000 polygons each.
 				</p>
 				<p>
-				3D points are rendered with respect to the origin and this presents a problem with mapping models in 3D space. When 
+				The 3D points in a model assume that the origin is at its center and this presents a problem with mapping models in 3D space. When 
 				multiple models need to be rendered, each one’s points will be rendered with respect to the origin and they will often
 				overlap. To manipulate the location and orientation of where an object is rendered, the points that make up the model
 				need to undergo transformations, specifically translations and rotations.
