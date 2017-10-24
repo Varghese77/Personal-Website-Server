@@ -66,7 +66,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="../../index.html">HOME</a></li>
                         <li><a href="../../portfolio.html" style="color:#ffffff">PORTFOLIO</a></li>
-                        <!--<li><a href="../../blog.html">BLOG (NEW)</a></li>-->
+                       <!-- <li><a href="../../blog.html">BLOG (NEW)</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -74,27 +74,14 @@
     <h1 class="readme">README!</h1>
     <div style="color: black" class="form-group container">
         <pre>
-          This app takes in a string via the text panel and replaces certain ascii symbols logical ones. The conversion key is...
+          I created this app to help me with one of the international relations courses I took at the University of Washington which required me to
+          read the international section of The New York Times every day. While the summaries generated are pretty rough, they generally get the job done.
           <br/>
-          "{A}" : ∀
-          "{E}" : ∃
-          "->"  : →
-          "<_>" : ↔
-          "not" : ¬
-          "not " : ¬
-          " and " : ∧
-          " or " : ∨
-          " xor " : ⊕
-          ":=" : ≡
-          "{U}" : ∪
-          "{u}" : ∩
-          "{u>}" : ⊂
-          "{ue}": ∈
-          "{u=}" :"⊆
+          To use this app simply copy the raw text of a news article (i.e. one from the NY Times, The Economist, The Wall Street Journal, ect.) and the app will try to summarize it to a user-specified number of sentences. This app is still a work in progress and has many bugs that need to be worked out.
           <br/>
-          If you want to use the words "and", "or", without "not" being converted then put a \ infront of it. For instance "not p or not q := not (p and q) : DeM\organ's Law" will translate into "¬p ∨ ¬q ≡ ¬(p ∧ q) : DeM\organ's Law". Press the Remove "\"s button to remove the special backslash sequences. 
+          WARNING: Any copied text the app takes must only be the text in the article. Text from things like ads, website elements will cause noise in the summarizing algorithm.
       </pre>
-      <a href="app.html"><button type="button" class="btn btn-default btn-md">Go Back!</button><a>
+      <a href="app.html"><button type="button" class="btn btn-default btn-md">Go To App!</button><a>
         </div>
   </body>
 </html>
