@@ -18,17 +18,17 @@
 
     <link rel="stylesheet" href="css/theme_tweeks.css">
     <style>
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 400;
-            src: local('Montserrat Regular'), local('Montserrat-Regular'), url(http://fonts.gstatic.com/s/montserrat/v10/zhcz-_WihjSQC0oHJ9TCYC3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
-        }
         a:hover {
             text-decoration: none;
         }
-        h3 {
-            margin: 0 0 10px 0;
+        h2 {
+            margin: 0 0 50px 0;
+        }
+        .about {
+            padding: 0px;
+            padding-top: 45px;
+            padding-right: 50px;
+            padding-left: 50px;
         }
     </style>
     <script src="js/helper.js"></script>
@@ -69,20 +69,48 @@
     </nav>
 
     <!-- First Container -->
-    <div class="container-fluid bg-1 text-center">
-        <h2>About This Portfolio!</h2>
-        <h3>This portfolio only includes my web applications. My other projects can be found on my <a href="https://github.com/Varghese77">github</a>.</h3>
-    </div>
-
-    <!-- Second Container -->
     <div class="container-fluid bg-3 text-center">
-        <h3>Projects</h3>
+        <h2>Projects</h2>
 		<!-- Cards -->
 
         <!-- ROW 1 -->
         <div class="row">
-
             <div class="col-sm-4">
+                <a href="apps/music_visualizer/readme.html">
+                    <div class="card">
+                        <h4>Music Visualizer</h4>
+                        <img src="images/music_bars.png" class="card-img" />
+                        <p class="description">This app takes in an uploaded mp3 file and then playes it while simultaneously showing the frequencies of the sound at the same time.
+                        </p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-sm-4">
+                <a href="apps/messenger/readme.html">
+                    <div class="card">
+                        <h4>Messenger</h4>
+                        <img src="images/chatroom.png" class="card-img" />
+                        <p class="description">Basic version of a chatroom application which supports usernames, rooms, and limited peer-to-peer VOIP functionality
+                        </p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-sm-4">
+                <a href="apps/article_summarizer/app.html">
+                    <div class="card">
+                        <h4>Article Summarizer</h4>
+                        <img src="images/article_summarizer.png" class="card-img" />
+                        <p class="description">Inspired by SMMRY.com, Article Summarizer can take in the text of an article and help shorten it to its most important sentences to convey the gist of the article.</p>
+                    </div>
+                </a>
+            </div>
+    
+        </div>
+
+         <!-- ROW 2 -->
+        <div class="col-sm-4">
                 <a href="apps/overwatch_counters/app.html">
                     <div onmouseover="enlargeCard(this)" onmouseout="shrinkCard(this)" class="card">
                         <h4>Overwatch Counter Guide</h4>
@@ -108,45 +136,23 @@
                 </a>
             </div>
             
-            <div class="col-sm-4">
-                <a href="apps/article_summarizer/app.html">
-                    <div class="card">
-                        <h4>Article Summarizer</h4>
-                        <img src="images/article_summarizer.png" class="card-img" />
-                        <p class="description">Inspired by SMMRY.com, Article Summarizer can take in the text of an article and help shorten it to its most important sentences to convey the gist of the article.</p>
-                    </div>
-                </a>
-            </div>
-    
-        </div>
-
-         <!-- ROW 2 -->
-        <div class="row">
-            <div class="col-sm-4">
-                <a href="apps/music_visualizer/readme.html">
-                    <div class="card">
-                        <h4>Music Visualizer</h4>
-                        <img src="images/music_bars.png" class="card-img" />
-                        <p class="description">This app takes in an uploaded mp3 file and then playes it while simultaneously showing the frequencies of the sound at the same time.
-                        </p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-sm-4">
-                <a href="apps/messenger/readme.html">
-                    <div class="card">
-                        <h4>Messenger</h4>
-                        <img src="images/chatroom.png" class="card-img" />
-                        <p class="description">Basic version of a chatroom application which supports usernames, rooms, and limited peer-to-peer VOIP functionality
-                        </p>
-                    </div>
-                </a>
-            </div>
-            
             <div class="col-sm-4"></div>
         </div>
         
+    </div>
+    
+       <!-- Second Container -->
+    <div class="container-fluid bg-1 text-center about">
+        <h2>About This Portfolio!</h2>
+        <h3>This portfolio ONLY includes my web applications. My other projects and the code for anything on this website can be found on my <a href="https://github.com/Varghese77">GitHub</a>. Notable class projects (which I can't put online) include...
+        </h3>
+        <h3>
+        <ul>
+            <li>A Huffman-Coding File Compressor</li>
+            <li>ChessBot AI</li>
+            <li>Interactive UW Map (With Pathfinding)</li>
+            <li>Naive Bayes Email Filter</li>
+        </ul> </h3>
     </div>
 
     <!-- Footer -->
