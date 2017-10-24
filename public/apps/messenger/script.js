@@ -80,4 +80,5 @@ if (isValidBrowser) {
   document.getElementById("pickup-label").style.visibility = "hidden";
   document.getElementById("hangup-label").style.visibility = "hidden";
   document.getElementById("callee-handle").style.visibility = "hidden";
+  document.getElementById("call-warn").style.visibility = "hidden";
 }
