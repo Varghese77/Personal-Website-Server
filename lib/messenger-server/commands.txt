@@ -1,8 +1,10 @@
 
 /help: Lists all of the possible commands
+/getuserinfo: Get your handle and the name of the room you are in
 /changename &ltuser-name&gt: Change your user name (no whitespace in name)
 /listpeople: Lists all the people currently online
 /listrooms: Lists all of the chat rooms
+/listroompeople &ltroom-name&gt: Lists all people in specified room
 /whisper &ltuser-name&gt &ltmessage&gt: Send a private message
 /createroom &ltroom-name&gt: Creates a room to join
 /join &ltroom&gt: Joins a room (Must exist)

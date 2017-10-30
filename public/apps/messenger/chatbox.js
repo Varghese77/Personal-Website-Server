@@ -36,6 +36,10 @@ function ChatBox(socket, message, sendButton, chatDisplay, handle) {
   // REGEX which parses string into the format...
   // <before first space> <optional part until next space> <optional remainder>
   var parsingRegex = /(^\/\S*)(?:[^\n\r\S]+(\S*))?(?:[^\n\r\S]+(.*))?/;
+  
+  // stack holds all previous inputted text
+  var stackLoc = 0;
+  var inputStack = [];
 
   /**
    * Takes in a string and split it an array of strings with the command being
@@ -98,13 +102,21 @@ function ChatBox(socket, message, sendButton, chatDisplay, handle) {
       message: text,
       handle: this.handle
     });
+    inputStack.push(text);
+    stackLoc = inputStack.length;
   };
 
   this.sendButton.addEventListener("click", send);
   this.message.addEventListener("keyup", function(event) {
     // user can send message by pressing enter while cursor is on message field
-    if (event.keyCode == 13) {
+    if (event.keyCode == 13) {  // enter
       send();
+    } else if (event.keyCode == 38 && stackLoc > 0 && inputStack.length) {  // up arrow
+      stackLoc--;
+      this.value = inputStack[stackLoc];
+    } else if (event.keyCode == 40 && stackLoc < inputStack.length - 1) {  // down arrow
+      stackLoc++;
+      this.value = inputStack[stackLoc];
     }
   });
 
