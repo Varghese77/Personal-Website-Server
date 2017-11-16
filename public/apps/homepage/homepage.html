@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+  </head>
+  <style>
+::-webkit-input-placeholder { /* Chrome */
+  color: white;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: white;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+  opacity: 1;
+}
+
+    body {
+      color: white;
+      font-family: Geneva, sans-serif;
+      text-align: center;
+      -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+      text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+    }
+
+    #search {
+      margin-top: 4em;
+      min-width: 40%;
+      height: 40px;
+      font-size: 2em;
+      background-color: rgba(0,0,0,0);
+      border-top-style: none;
+      border-left-style: none;
+      border-right-style: none;
+      outline: none;
+      color: white;
+      text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+    }
+
+    #whole-body {
+      margin-top: 8em;
+    }
+
+    #time {
+      font-size: 6em;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    h2 {
+      font-size: 4em;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    #buttons {
+      width: 40%;
+      margin: auto;
+    }
+
+    #left {
+      float: right;
+    }
+
+    #right {
+      float: right;
+    }
+
+    #source {
+      float: right;
+    }
+
+    #about {
+      float: right;
+    }
+
+
+  </style>
+  <body onload="startTime()">
+    <div id="whole-body">
+      <div id="time"></div>
+      <h2>Hello Roy.</h2>
+      <input id='search' type="text" placeholder="Search..">
+    </div>
+    <div id="buttons">
+    <button id='right' type="button" onclick="nextBackground()">></button>
+    <button id='left' type="button" onclick="prevBackground()"><</button>
+    <button id='about' type="button">About</button>
+    <button id='source' type="button">Photo Source</button>
+  </div>
+  </body>
+  <script type="text/javascript" src="script.js"></script>
+</html>
