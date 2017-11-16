@@ -7,13 +7,10 @@
  * 
  * @param {SocketLogger} socket - SocketLogger Connected to server
  * @param {HTMLAudioElement} audioElement - audio element, will play stream
+ * @param {ChatBox} chatBox - text box for prompt
  */
-function RemoteAudio(socket, audioElement) {
-  /** @member {SocketLogger} socket */
-  this.socket = socket;
-
+function RemoteAudio(socket, audioElement, chatBox) {
   var audioPlayer = audioElement;
-
   var iceCandidateStack = [];
 
   // Elements used to set up RTCPeerConnection
@@ -22,8 +19,12 @@ function RemoteAudio(socket, audioElement) {
   var isCaller = false;
   var servers = {
     iceServers: [
-      { urls: "stun1.l.google.com:19302" },
-      { urls: "stun.stunprotocol.org:3478" }
+      {
+        urls: "stun:stun.l.google.com:19302"
+      },
+      {
+        urls: "stun:stun4.l.google.com:19302"
+      }
     ]
   };
 
@@ -37,7 +38,7 @@ function RemoteAudio(socket, audioElement) {
     voiceActivityDetection: false
   };
 
-  pc = new RTCPeerConnection(servers, pcConstraints);
+  pc = new RTCPeerConnection(servers);
   pc.onicecandidate = function(e) {
     onIceCandidate(pc, e);
   };
@@ -58,7 +59,7 @@ function RemoteAudio(socket, audioElement) {
 
     if (isCaller) {
       pc.createOffer(offerOptions).then(gotLocalDescription, () => {
-        console.log("Failed to create Session Description");
+        chatBox.display('Error:', 'Failed to create Session Description', 'red');
       });
     }
   }
@@ -90,7 +91,7 @@ function RemoteAudio(socket, audioElement) {
           desc: desc
         });
       },
-      () => console.log("Initiator Couldn't set Local SDP description")
+      () => {chatBox.display('Error:', "Initiator Couldn't set Local SDP description", 'red');}
     );
   }
 
@@ -114,7 +115,7 @@ function RemoteAudio(socket, audioElement) {
     isCaller = false;
   };
 
-  this.socket.logAndReceive("ICE-Candidate", function(data) {
+  socket.logAndReceive("ICE-Candidate", function(data) {
     if (pc.remoteDescription && pc.remoteDescription.type) {
       pc.addIceCandidate(new RTCIceCandidate(data.candidate));
     } else {
@@ -122,7 +123,7 @@ function RemoteAudio(socket, audioElement) {
     }
   });
 
-  this.socket.logAndReceive("SDP-Offer", function(data) {
+  socket.logAndReceive("SDP-Offer", function(data) {
     pc.setRemoteDescription(data.desc).then(
       () => {
         addIceCandidatesFromStack();
@@ -136,23 +137,23 @@ function RemoteAudio(socket, audioElement) {
                 });
               },
               () =>
-                console.log("Non-Initiator couldn't set Local SDP description")
+              chatBox.display('Error:', "Non-Initiator couldn't set Local SDP description", 'red')
             );
           },
-          () => console.log("Couldn't Create Answer")
+          () => chatBox.display('Error:', "Couldn't create SDP Answer", 'red')
         );
       },
-      () => console.log("Non-Initiator Couldn't set remote SDP description")
+      () => chatBox.display('Error:', "Non-Initiator couldn't set Local SDP description", 'red')
     );
   });
 
-  this.socket.logAndReceive("SDP-Answer", function(data) {
+  socket.logAndReceive("SDP-Answer", function(data) {
     pc.setRemoteDescription(data.desc).then(
       () => {
         addIceCandidatesFromStack();
         console.log("Initiator set Remote SDP description");
       },
-      () => console.log("Initiator couldn't set Remote SDP description")
+      () => chatBox.display('Error:', "Initiator couldn't set Remote SDP description", 'red')
     );
   });
 

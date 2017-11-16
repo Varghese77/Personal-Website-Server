@@ -57,7 +57,7 @@ if (isValidBrowser) {
   var audioPlayer;
   audioPlayer = document.getElementById("remote_audio");
   audioPlayer.autoplay = true;
-  var remoteAudio = new RemoteAudio(socket, audioPlayer);
+  var remoteAudio = new RemoteAudio(socket, audioPlayer, chatBox);
 
   var callBox = new CallBox({
     socket: socket,
