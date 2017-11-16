@@ -59,3 +59,6 @@ typings/
 
 # SSL Pem files
 *.pem
+
+# other stuff
+public/apps/homepage/images/*

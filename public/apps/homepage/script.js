@@ -16,7 +16,7 @@ function loadJSON(addr) {
 	return jsonData;
 }
 
-var addr = 'data.json';
+var addr = 'data.json?nocache=' + (new Date()).getTime();
 
 data = loadJSON(addr);
 data = data.data;
@@ -41,6 +41,7 @@ function preloadImages(array) {
       img.src = array[i].url;
   }
 }
+
 preloadImages(data);
 
 
@@ -98,6 +99,11 @@ function startTime() {
 function checkTime(i) {
   if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
   return i;
+}
+
+function goToSource() {
+  window.location.href = '';
+  window.location.href = "https://www.reddit.com" + data[backgroundIdx].permalink;
 }
 
 var input = document.getElementById('search');
