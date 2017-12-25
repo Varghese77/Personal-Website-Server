@@ -52,7 +52,7 @@ ul {
 }
 
 .bg-1 {
-    background-color: #74c365; /* Green */
+    background-color: #5D45A4; /* Green */
     color: #ffffff;
 }
 
@@ -84,7 +84,7 @@ ul {
 }
 
 .navbar-nav li a:hover {
-    color: #74c365 !important;
+    color: #5D45A4 !important;
 }
 
 .icon {
@@ -121,7 +121,7 @@ ul {
 }
 
 .card:hover {
-        box-shadow: 3px 5px 20px 3px #74c365;
+        box-shadow: 3px 5px 20px 3px #5D45A4;
 }
 
 footer {

@@ -28,13 +28,15 @@
             padding-right: 50px;
             padding-left: 50px;
         }
+        h4 {
+            text-decoration: none;
+        }
     </style>
     <script src="js/helper.js"></script>
     <script>
         var cards = document.getElementsByClassName("card");
         
         window.onload = reSize;
-
         window.onresize = reSize;
         
         function reSize() {
@@ -108,6 +110,7 @@
         </div>
 
          <!-- ROW 2 -->
+        <div class="row">
         <div class="col-sm-4">
                 <a href="apps/overwatch_counters/app.html">
                     <div onmouseover="enlargeCard(this)" onmouseout="shrinkCard(this)" class="card">
@@ -142,30 +145,23 @@
        <!-- Second Container -->
     <div class="container-fluid bg-1 text-center about">
         <h2>About This Portfolio!</h2>
-        <h3>This portfolio ONLY includes my web applications. My other projects and the code for anything on this website can be found on my <a href="https://github.com/Varghese77">GitHub</a>. Notable class projects (which I can't put online) include...
-        </h3>
-        <h3>
+        <h4>This portfolio ONLY includes my web applications. My other projects and the code for anything on this website can be found on my <a href="https://github.com/Varghese77">GitHub</a>. Notable class projects (which I can't put online) include...
+        </h4>
+        <h4>
         <ul>
             <li>A Huffman-Coding File Compressor</li>
             <li>ChessBot AI</li>
             <li>Interactive UW Map (With Pathfinding)</li>
             <li>Naive Bayes Email Filter</li>
-        </ul> </h3>
+        </ul>
+        </h4>
     </div>
 
     <!-- Footer -->
     <footer class="container-fluid text-center bg-4">
-        <h4>Contact Me</h4>
         <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                <a href="https://www.facebook.com/Varghese777"><img class="icon" src="images/fb.png" /></a>
-                <a href="https://www.linkedin.com/in/royvarghesemathew"><img class="icon" src="images/linkdin.png" /></a>
-                <a href="https://github.com/Varghese77"><img class="icon" src="images/git.png" /></a>
-                <a href="mailto:RoyM77@gmail.com"><img class="icon" src="images/email.png" /></a>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-12">
+                    <p>&copy; Roy Varghese Mathew. All rights reserved.</p>
             </div>
         </div>
     </footer>
