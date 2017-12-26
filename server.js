@@ -65,9 +65,10 @@ var downloadEarthImages = function(uri, idx, data){
 
 // Encryption Cert and Key
 console.log('Reading SSL Setup PEMs')
-var privateKey  = fs.readFileSync('../ssl/privkey.pem');
-var certificate = fs.readFileSync('../ssl/fullchain.pem');
-var credentials = {key: privateKey, cert: certificate};
+var privateKey  = fs.readFileSync('/etc/letsencrypt/live/royvmathew.com/privkey.pem');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/royvmathew.com/fullchain.pem');
+var chain = fs.readFileSync('/etc/letsencrypt/live/royvmathew.com/chain.pem');
+var credentials = {key: privateKey, cert: certificate, ca: chain};
 
 // Set Up HTTP redirect to HTTPS
 console.log('Creating Express HTTP Server');
