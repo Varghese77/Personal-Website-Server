@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>JSON Beautifier</title>
+      <!-- Bootstrap core CSS -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Bootstrap core JavaScript -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/renderjson.js"></script>
+
+      <link rel="stylesheet" href="css/render_json_style.css">
+      <link rel="stylesheet" href="css/page_style.css">
+    </head>
+    <body>
+      <h2 id="heading">JSON Beautifier</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="raw_json">JSON Raw Text:</label>
+              <textarea class="form-control" rows="20" id="raw-json"></textarea>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="comment">Beautified JSON:</label>
+              <div class="jumbotron" id="format-jumbo">
+                <div id="rendered-json"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary btn-lg btn-block" id="beautify-button">Beautify</button>
+        <div class="container">
+          <div class="row" id="low-btn-row">
+            <div class="col-6" id="low-btn-left">
+                <button type="button" class="btn btn-outline-primary low-btn">Clear</button>
+            </div>
+            <div class="col-6" id="low-btn-right">
+                <button data-toggle="collapse" data-target="#raw-beautiful-json" type="button" class="btn btn-outline-primary low-btn" id="show-hide">Show/Hide Raw Beautified JSON</button>
+            </div>
+          </div>
+          <div class="collapse" class="jumbotron" id="raw-beautiful-json">
+            <h3>Raw Beautified JSON:</h3>
+            <br/>
+            <pre>
+              <code id="raw-beautiful-json-str">
+
+              </code>
+            </pre>
+          </div>
+        </div>
+
+
+
+
+
+      <script type="text/javascript" src="js/script.js"></script>
+    </body>
+  </html>
