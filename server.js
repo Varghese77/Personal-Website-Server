@@ -39,6 +39,9 @@ function parseJSON(err, res, body) {
 // Code taken from https://stackoverflow.com/questions/12740659/downloading-images-with-node-js
 var downloadEarthImages = function(uri, idx, data){
     request.head(uri, function(err, res, body){
+        if(err) {
+          return;
+        }
         if (res.headers['content-type'] !== 'image/jpeg') {
             writtenImages++;
         } else {
